@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body, html {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+
+    #container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+</style>
+<div id="container"></div>
+<script type="text/javascript" src="../bundle.js"></script>
+<script>
+    var tracer = new Tracer({
+        width: window.innerWidth,//width canvas
+        height: window.innerHeight,//height canvas
+        base: { // base mean background line
+            color: [{
+                red: [150, 200],
+                green: [150, 200],
+                blue: [0, 0],
+                opacity: [0.5, 0.9]
+            }, {
+                red: [200, 250],
+                green: [0, 0],
+                blue: [0, 0],
+                opacity: [0.5, 0.9]
+            }, {
+                red: [100, 150],
+                green: [0, 0],
+                blue: [150, 200],
+                opacity: [0.5, 0.9]
+            }],
+            count: [5, 12], //amount base lines
+            rangeX: [-20, 20], // range between extreme left and extreme right line
+            rangeY: [-20, 20], // range between extreme top and extreme right bottom
+            width: [1, 4], // range width lines
+        }
+    });
+    tracer.setCoordinate([
+        {x: 50, y: 790},
+        {x: 400, y: 650},
+        {x: 250, y: 550},
+        {x: 350, y: 430},
+        {x: 300, y: 280},
+        {x: 650, y: 50},
+    ]);
+    tracer.appendTo(container);
+    tracer.run()
+</script>
+</body>
+</html>
