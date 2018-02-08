@@ -28,25 +28,40 @@
         height: window.innerHeight,//height canvas
         base: { // base mean background line
             color: [{
-                red: [150, 200],
-                green: [150, 200],
-                blue: [0, 0],
-                opacity: [0.5, 0.9]
+                red: [30, 30],
+                green: [30, 30],
+                blue: [30, 30],
+                opacity: [0.5, 0.7]
+            }, {
+                red: [30, 30],
+                green: [30, 30],
+                blue: [30, 30],
+                opacity: [0.5, 0.7]
+            }, {
+                red: [30, 30],
+                green: [30, 30],
+                blue: [30, 30],
+                opacity: [0.5, 0.7]
+            }, {
+                red: [30, 30],
+                green: [30, 30],
+                blue: [30, 30],
+                opacity: [0.5, 0.7]
             }, {
                 red: [200, 250],
-                green: [0, 0],
+                green: [100, 100],
                 blue: [0, 0],
                 opacity: [0.5, 0.9]
-            }, {
+            }/*, {
                 red: [100, 150],
                 green: [0, 0],
                 blue: [150, 200],
                 opacity: [0.5, 0.9]
-            }],
-            count: [5, 12], //amount base lines
-            rangeX: [-20, 20], // range between extreme left and extreme right line
-            rangeY: [-20, 20], // range between extreme top and extreme right bottom
-            width: [1, 4], // range width lines
+            }*/],
+            count: [10, 10], //amount base lines
+            distX: [0, 10], // range between extreme left and extreme right line
+            distY: [0, 10], // range between extreme top and extreme right bottom
+            width: [1, 2], // range width lines
         }
     });
     tracer.setCoordinate([

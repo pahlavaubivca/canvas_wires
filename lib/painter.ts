@@ -17,14 +17,22 @@ export class Painter {
             color: this.parseColor(baseOption.color)
         });
         const _count = random(baseOption.count[0], baseOption.count[1]);
+        let oldSX = 0, oldSY = 0;
+        const minDX = baseOption.distX[0];
+        const maxDX = baseOption.distX[1];
+        const minDY = baseOption.distY[0];
+        const maxDY = baseOption.distY[1];
         for (let i = 0; i < _count; i++) {
-            const shiftX = random(baseOption.rangeX[0], baseOption.rangeX[1]);
-            const shiftY = random(baseOption.rangeY[0], baseOption.rangeY[1]);
+            let sX = random(minDX, maxDX);
+            let sY = random(minDY, maxDY);
+            sX = oldSX = sX + oldSX;
+            sY = oldSY = sY + oldSY;
+
             const points = [];
             this.arrPoints.forEach(value => {
                 points.push({
-                    x: value.x - shiftX,
-                    y: value.y - shiftY
+                    x: value.x + sX,
+                    y: value.y + sY
                 })
             });
             const width = random(baseOption.width[0], baseOption.width[1]);
@@ -43,7 +51,7 @@ export class Painter {
             this.ctx.beginPath();
             this.ctx.lineWidth = value.width;
             this.ctx.strokeStyle = value.color;
-            value.points.forEach((point,i) => {
+            value.points.forEach((point, i) => {
                 if (i === 0) {
                     this.moveTo(point.x, point.y);
                 }
