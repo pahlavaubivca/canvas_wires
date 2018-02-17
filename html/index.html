@@ -23,44 +23,19 @@
 <div id="container"></div>
 <script type="text/javascript" src="../bundle.js"></script>
 <script>
-    var tracer = new Tracer({
+    var tracer = new Wires({
         width: window.innerWidth,//width canvas
         height: window.innerHeight,//height canvas
-        base: { // base mean background line
+        wires: { // wires mean background line
             color: [{
-                red: [30, 30],
-                green: [30, 30],
-                blue: [30, 30],
-                opacity: [0.5, 0.7]
-            }, {
-                red: [30, 30],
-                green: [30, 30],
-                blue: [30, 30],
-                opacity: [0.5, 0.7]
-            }, {
-                red: [30, 30],
-                green: [30, 30],
-                blue: [30, 30],
-                opacity: [0.5, 0.7]
-            }, {
-                red: [30, 30],
-                green: [30, 30],
-                blue: [30, 30],
-                opacity: [0.5, 0.7]
-            }, {
-                red: [200, 250],
-                green: [100, 100],
-                blue: [0, 0],
-                opacity: [0.5, 0.9]
-            }/*, {
-                red: [100, 150],
-                green: [0, 0],
-                blue: [150, 200],
-                opacity: [0.5, 0.9]
-            }*/],
-            count: [10, 10], //amount base lines
-            distX: [0, 10], // range between extreme left and extreme right line
-            distY: [0, 10], // range between extreme top and extreme right bottom
+                red: 30,
+                green: 30,
+                blue: 30,
+                opacity: 0.7
+            }],
+            count: 10, //amount wires lines
+            distX: [5, 10], // range between extreme left and extreme right line
+            distY: [0, 0], // range between extreme top and extreme right bottom
             width: [1, 2], // range width lines
         }
     });
