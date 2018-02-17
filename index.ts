@@ -8,12 +8,6 @@ interface IParams {
     beam?: IBeam;
 }
 
-export interface IPoints {
-    points: { x: number, y: number }[]
-    width: number;
-    color: string;
-
-}
 
 export interface IColor {
     red: number[] | number;
@@ -44,7 +38,7 @@ export class Wires {
     private coordinate: { x: number, y: number }[];
     private wires: IWires;
     private beam: IBeam;
-    private drawer;
+    private painter: Painter;
 
     constructor(params: IParams) {
         this.parseParams(params);
@@ -55,14 +49,12 @@ export class Wires {
 
     public setCoordinate(coordinate: { x: number, y: number }[]) {
         this.coordinate = coordinate;
-        this.drawer = new Painter(coordinate, this.ctx);
+        this.painter = new Painter(coordinate, this.ctx);
     }
 
     private parseParams(params: IParams) {
         this.wires = {
             color: params.wires && params.wires.color || [{red: [250], green: [0], blue: [0], opacity: [0.5, 1]}],
-            // rangeX: params.wires && params.wires.rangeX || [30, -30],
-            // rangeY: params.wires && params.wires.rangeY || [0, 0],
             count: params.wires && params.wires.count || [5, 8],
             width: params.wires && params.wires.width || [0.2, 2],
             distX: params.wires && params.wires.distX || [3, 5],
@@ -86,7 +78,7 @@ export class Wires {
     }
 
     public run() {
-        this.drawer.drawBase(this.wires);
+        this.painter.baseWiresInit(this.wires);
     }
 }
 
