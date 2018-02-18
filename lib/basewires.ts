@@ -20,13 +20,11 @@ export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPo
         width: getWidth(b),
         color: parseColor(b.color)
     });
-    _buffPoint = [points[0]];
+    _buffPoint = [{x: 0, y: 0}];
     let sumbolX, sumbolY;
     for (let i = 0; i < _amount; i++) {
-        if (sumbolX === void 0) {
-            sumbolX = random(1, -1) < 0 ? -1 : 1;
-            sumbolY = random(1, -1) < 0 ? -1 : 1;
-        }
+        if (sumbolX === void 0 || minDX <= minDY) sumbolX = random(1, -1) < 0 ? -1 : 1;
+        if (sumbolY === void 0 || minDX >= minDY) sumbolY = random(1, -1) < 0 ? -1 : 1;
         let randSX = random(minDX, maxDX) * sumbolX;
         let randSY = random(minDY, maxDY) * sumbolY;
         sumbolX *= -1;
@@ -50,17 +48,18 @@ export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPo
 };
 const defineNextPoint = (randX, randY) => {
     let targetX = randX, targetY = randY;
-    let koef = Math.abs(Math.abs(targetX) > Math.abs(targetY) ? targetY / targetX : targetX / targetY);
+    let maxX = 0,
+        maxY = 0,
+        minX = 0,
+        minY = 0;
     _buffPoint.forEach(value => {
-        const dist = distBetweenPoints(value.x, value.y, targetX, targetY);
-        if (dist < minDist) {
-            const diff = minDist - dist;
-            const shiftX = value.x + ((diff + (1 - koef)) * targetX > 0 ? 1 : -1);
-            const shiftY = value.y + ((diff + koef) * targetY > 0 ? 1 : -1);
-            targetX = targetX !== 0 ? targetX + shiftX : 0;
-            targetY = targetY !== 0 ? targetY + shiftY : 0;
-        }
+        maxX = value.x > maxX ? value.x : maxX;
+        minX = value.x < minX ? value.x : minX;
+        maxY = value.y > maxY ? value.y : maxY;
+        minY = value.y < minY ? value.y : minY;
     });
+    targetX += targetX < 0 ? minX : maxX;
+    targetY += targetY < 0 ? minY : maxY;
     _buffPoint.push({x: targetX, y: targetY});
     return {
         x: targetX,
