@@ -20,8 +20,10 @@ export interface IWires {
     color: IColor[] | string[];
     count: number[] | number;
     width: number[] | number;
-    distX: number[] | number;
-    distY: number[] | number;
+    distanceRange:{
+        x: number[],
+        y: number[]
+    }
 }
 
 export interface IBeam {
@@ -41,7 +43,6 @@ export class Wires {
     private painter: Painter;
 
     constructor(params: IParams) {
-        this.parseParams(params);
         const _canvas = new Canvas(params.width, params.height);
         this.canvas = _canvas.getElement();
         this.ctx = _canvas.getContext();
@@ -52,21 +53,12 @@ export class Wires {
         this.painter = new Painter(coordinate, this.ctx);
     }
 
-    private parseParams(params: IParams) {
-        this.wires = {
-            color: params.wires && params.wires.color || [{red: [250], green: [0], blue: [0], opacity: [0.5, 1]}],
-            count: params.wires && params.wires.count || [5, 8],
-            width: params.wires && params.wires.width || [0.2, 2],
-            distX: params.wires && params.wires.distX || [3, 5],
-            distY: params.wires && params.wires.distY || [3, 5]
-        };
-        this.beam = {
-            color: params.beam && params.beam.color || [{red: [150], green: [50], blue: [0], opacity: [0.5, 1]}],
-            count: params.beam && params.beam.count || [5],
-            speed: params.beam && params.beam.speed || [2],
-            length: params.beam && params.beam.length || [50],
-            direction: params.beam && params.beam.direction || 1
-        }
+    public setWires(wiresParams: IWires) {
+        this.wires = wiresParams;
+    }
+
+    public setBeam(beamParams: IBeam) {
+        this.beam = beamParams;
     }
 
     public appendTo(container: HTMLElement) {
@@ -82,4 +74,4 @@ export class Wires {
     }
 }
 
-(window as any).Tracer = Wires;
+(window as any).Wires = Wires;
