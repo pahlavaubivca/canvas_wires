@@ -1,5 +1,5 @@
 import {distBetweenPoints, getAmount, getWidth, parseColor, random} from "./helper";
-import {IWires} from "../index";
+import {IWires} from "../utils/interfaces";
 import {IPoints} from "./painter";
 
 let _buffPoint;
