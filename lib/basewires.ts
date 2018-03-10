@@ -5,6 +5,11 @@ import {IPoints} from "./painter";
 let _buffPoint;
 let minDist;
 
+/**
+ * function
+ * @param {IWires} b - options
+ * @param {Array<{x:number,y:number}>} - initial point setted by user
+ **/
 export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPoints[] => {
     const lines = [];
     const _amount = getAmount(b);
@@ -13,8 +18,6 @@ export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPo
     const minDY = b.distanceRange.y[0];
     const maxDY = b.distanceRange.y[1];
     minDist = minDX < minDY ? minDY : minDX;
-
-
     lines.push({
         points: points,
         width: getWidth(b),

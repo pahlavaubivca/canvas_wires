@@ -22,10 +22,18 @@ export const parseColor = (colors: Array<IColor | string>): string => {
         color = cColor
     } else {
         cColor = cColor as IColor;
-        const red = typeof cColor.red === "number" ? cColor.red : Math.floor(random(cColor.red[0], cColor.red[1]));
-        const green = typeof cColor.green === "number" ? cColor.green : Math.floor(random(cColor.green[0], cColor.green[1]));
-        const blue = typeof cColor.blue === "number" ? cColor.blue : Math.floor(random(cColor.blue[0], cColor.blue[1]));
-        const opacity = typeof cColor.opacity === "number" ? cColor.opacity : random(cColor.opacity[0], cColor.opacity[1]);
+        const red = typeof cColor.red === "number" ?
+            cColor.red :
+            Math.floor(random(cColor.red[0], cColor.red[1]));
+        const green = typeof cColor.green === "number" ?
+            cColor.green :
+            Math.floor(random(cColor.green[0], cColor.green[1]));
+        const blue = typeof cColor.blue === "number" ?
+            cColor.blue :
+            Math.floor(random(cColor.blue[0], cColor.blue[1]));
+        const opacity = typeof cColor.opacity === "number" ?
+            cColor.opacity :
+            random(cColor.opacity[0], cColor.opacity[1]);
         color = `rgba(${red},${green},${blue},${opacity})`;
     }
     return color;

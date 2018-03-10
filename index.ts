@@ -20,10 +20,18 @@ export interface IWires {
     color: IColor[] | string[];
     count: number[] | number;
     width: number[] | number;
-    distanceRange:{
+    speed?: number;
+    distanceRange: {
         x: number[],
         y: number[]
     }
+}
+
+export interface ICoordinate {
+    x: number;
+    y: number;
+    hollow?: boolean;
+    childs?: Array<ICoordinate>;
 }
 
 export interface IBeam {
@@ -39,8 +47,6 @@ export class Wires {
     private ctx: CanvasRenderingContext2D;
     private coordinate: { x: number, y: number }[];
     private wires: IWires;
-    private beam: IBeam;
-    private painter: Painter;
 
     constructor(params: IParams) {
         const _canvas = new Canvas(params.width, params.height);
@@ -48,29 +54,21 @@ export class Wires {
         this.ctx = _canvas.getContext();
     }
 
-    public setCoordinate(coordinate: { x: number, y: number }[]) {
-        this.coordinate = coordinate;
-        this.painter = new Painter(coordinate, this.ctx);
+    public setCoordinate(coordinate: ICoordinate): Wires {
+        return this;
     }
 
-    public setWires(wiresParams: IWires) {
-        this.wires = wiresParams;
+    public wiresOptions(tracerParams: IWires): Wires {
+        this.wires = tracerParams;
+        return this;
     }
 
-    public setBeam(beamParams: IBeam) {
-        this.beam = beamParams;
-    }
-
-    public appendTo(container: HTMLElement) {
+    public appendTo(container: HTMLElement): Wires {
         container.appendChild(this.canvas);
-    }
-
-    public getCanvas(): HTMLCanvasElement {
-        return this.canvas;
+        return this;
     }
 
     public run() {
-        this.painter.baseWiresInit(this.wires);
     }
 }
 
