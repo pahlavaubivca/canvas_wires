@@ -1,4 +1,4 @@
-import {IColor, IWires} from "../index";
+import {IColor, IWires} from "../utils/interfaces";
 
 export const degToRad = (deg) => {
     return (Math.PI / 180) * deg;
@@ -15,12 +15,12 @@ export const random = (min, max) => {
     return Math.random() * (max - min) + min;
 };
 
-export const parseColor = (colors: Array<IColor | string>): string => {
+export const parseColor = (colors: Array<IColor | string> | string): string => {
     let color;
-    let cColor = colors[Math.floor(random(0, colors.length - 0.1))];
     if (typeof colors === "string") {
-        color = cColor
+        color = colors
     } else {
+        let cColor = colors[Math.floor(random(0, colors.length - 0.1))];
         cColor = cColor as IColor;
         const red = typeof cColor.red === "number" ?
             cColor.red :

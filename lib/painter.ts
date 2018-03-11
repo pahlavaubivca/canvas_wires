@@ -1,6 +1,6 @@
 import {IWires, IBeam, IColor} from "../utils/interfaces";
 import {getAmount, getWidth, parseColor, random} from "./helper";
-import {getBaseLines} from "./basewires";
+import {getBaseLines} from "./wire/basewires";
 
 export interface IPoints {
     points: { x: number, y: number }[]

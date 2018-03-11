@@ -14,7 +14,7 @@ export interface IColor {
 }
 
 export interface IWires {
-    color: IColor[] | string[];
+    color: IColor[] | string[] | string;
     count: number[] | number;
     width: number[] | number;
     speed?: number;
@@ -37,4 +37,11 @@ export interface IBeam {
     speed: number[];
     length: number[];
     direction: number;
+}
+
+export interface ICanvasDrawerOption {
+    isFill?: boolean;
+    isStroke?: boolean;
+    width: number;
+    color: string;
 }

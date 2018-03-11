@@ -1,6 +1,6 @@
-import {distBetweenPoints, getAmount, getWidth, parseColor, random} from "./helper";
-import {IWires} from "../utils/interfaces";
-import {IPoints} from "./painter";
+import {distBetweenPoints, getAmount, getWidth, parseColor, random} from "../helper";
+import {IWires} from "../../utils/interfaces";
+import {IPoints} from "../painter";
 
 let _buffPoint;
 let minDist;

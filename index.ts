@@ -1,13 +1,14 @@
 import {Canvas} from "./lib/canvas";
 import {Point} from "./lib/point";
 import {ICoordinate, IParams, IWires} from "./utils/interfaces";
+import {WiresBuilder} from "./lib/wire/wires_builder";
 
 
 export class Wires {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
+    public canvas: HTMLCanvasElement;
+    public ctx: CanvasRenderingContext2D;
     public point: Point;
-    private wires: IWires;
+    public wiresParams: IWires;
 
     constructor(params: IParams) {
         const _canvas = new Canvas(params.width, params.height);
@@ -20,8 +21,8 @@ export class Wires {
         return this;
     }
 
-    public wiresOptions(wiresParams: IWires): Wires {
-        this.wires = wiresParams;
+    public setWiresParams(wiresParams: IWires): Wires {
+        this.wiresParams = wiresParams;
         return this;
     }
 
@@ -31,6 +32,7 @@ export class Wires {
     }
 
     public run() {
+        const wiresBuilder = new WiresBuilder(this.point, this.wiresParams, this.ctx);
     }
 }
 
