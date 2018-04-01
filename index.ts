@@ -1,7 +1,7 @@
 import {Canvas} from "./lib/canvas";
 import {Point} from "./lib/point";
 import {ICoordinate, IParams, IWires} from "./utils/interfaces";
-import {WiresBuilder} from "./lib/wire/wires_builder";
+import {WireTreeBuilder} from "./lib/wire/wires_builder";
 
 
 export class Wires {
@@ -17,7 +17,7 @@ export class Wires {
     }
 
     public setCoordinate(coordinate: ICoordinate): Wires {
-        this.point = new Point(coordinate, null);
+        this.point = new Point(coordinate[0], null);
         return this;
     }
 
@@ -32,7 +32,7 @@ export class Wires {
     }
 
     public run() {
-        const wiresBuilder = new WiresBuilder(this.point, this.wiresParams, this.ctx);
+        const wiresBuilder = new WireTreeBuilder(this.point, this.wiresParams, this.ctx);
     }
 }
 

@@ -23,8 +23,10 @@ export class Point {
             }
         });
         this.flatArrayPoints.push(this);
-        c.childs.forEach(v => {
-            this.children.push(new Point(v, this));
-        });
+        if (c.childs) {
+            c.childs.forEach(v => {
+                this.children.push(new Point(v, this));
+            });
+        }
     }
 }

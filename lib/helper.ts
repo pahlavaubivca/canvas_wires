@@ -38,10 +38,10 @@ export const parseColor = (colors: Array<IColor | string> | string): string => {
     }
     return color;
 };
-export const getWidth = (b: IWires): number => {
-    return typeof b.width === "number" ? b.width : random(b.width[0], b.width[1]);
+export const getWidth = (width: number[] | number): number => {
+    return typeof width === "number" ? width : random(width[0], width[1]);
 };
 
-export const getAmount = (b: IWires): number => {
-    return typeof b.count === "number" ? b.count : random(b.count[0], b.count[1]);
+export const getAmount = (amount: number[] | number): number => {
+    return typeof amount === "number" ? amount : random(amount[0], amount[1]);
 };

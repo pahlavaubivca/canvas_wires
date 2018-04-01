@@ -15,13 +15,14 @@ export interface IColor {
 
 export interface IWires {
     color: IColor[] | string[] | string;
-    count: number[] | number;
+    amount: number[] | number;
     width: number[] | number;
     speed?: number;
     distanceRange: {
         x: number[],
         y: number[]
-    }
+    },
+    splitBy?: number; //0 - x, 1 - y
 }
 
 export interface ICoordinate {

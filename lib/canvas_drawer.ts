@@ -7,25 +7,28 @@ export abstract class CanvasDrawer {
     private isStroke: boolean;
 
     constructor(canvasOption: ICanvasDrawerOption) {
-        //this.ctx = ctx;
+        // this.ctx = ctx;
         this.style = canvasOption;
         this.isFill = canvasOption.isFill;
         this.isStroke = canvasOption.isStroke || true;
-        // this.begin();
+        //this.begin();
     }
 
-    /*
-    * must been call from base class
-    * */
     public begin() {
         this.ctx.beginPath();
         this.ctx.lineWidth = this.style.width || 1;
         const setStyle = this.isStroke === true ? "strokeStyle" : "fillStyle";
+        console.log(this.style.color);
         this.ctx[setStyle] = this.style.color || "rgba(0,0,0,1)";
     }
 
     public moveTo(x: number, y: number) {
+        // TODO opional call begin method
+        // if begin not call canvas path overlay each one
+        // if begind call canvas path draw once, not overlay by other
+        this.begin();
         this.ctx.moveTo(x, y);
+
     }
 
     public lineTo(x: number, y: number) {
