@@ -8,6 +8,7 @@ import {getWidth, parseColor} from "../helper";
 * */
 export class WireDrawer extends CanvasDrawer {
     public ctx: CanvasRenderingContext2D;
+    private params: IWires;
 
     constructor(ctx: CanvasRenderingContext2D, params: IWires) {
         const color = parseColor(params.color);
@@ -17,7 +18,13 @@ export class WireDrawer extends CanvasDrawer {
             width: width as number,
             color: color as string
         });
+        this.params = params;
         this.ctx = ctx;
         this.begin();
+    }
+
+    public setNewStyle() {
+        this.setColor(parseColor(this.params.color));
+        this.setWidth(getWidth(this.params.width))
     }
 }

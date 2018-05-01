@@ -14,11 +14,18 @@ export abstract class CanvasDrawer {
         //this.begin();
     }
 
+    public setColor(color: string) {
+        this.style.color = color;
+    }
+
+    public setWidth(width: number) {
+        this.style.width = width;
+    }
+
     public begin() {
         this.ctx.beginPath();
         this.ctx.lineWidth = this.style.width || 1;
         const setStyle = this.isStroke === true ? "strokeStyle" : "fillStyle";
-        console.log(this.style.color);
         this.ctx[setStyle] = this.style.color || "rgba(0,0,0,1)";
     }
 

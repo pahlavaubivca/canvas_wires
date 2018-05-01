@@ -7,7 +7,7 @@ export class Point {
     public crossPoints: Array<Point> = [];
     public flatArrayPoints: Array<Point> = [];
     public parent: Point = null;
-    public children: Array<Point> = [];
+    public childs: Array<Point> = [];
 
     constructor(c: ICoordinate, ancesor: Point) {
         this.x = c.x;
@@ -25,7 +25,7 @@ export class Point {
         this.flatArrayPoints.push(this);
         if (c.childs) {
             c.childs.forEach(v => {
-                this.children.push(new Point(v, this));
+                this.childs.push(new Point(v, this));
             });
         }
     }
