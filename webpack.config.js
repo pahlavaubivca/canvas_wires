@@ -4,7 +4,7 @@ const config = {
     entry: "./index.ts",
     devtool: "source-map",
     output: {
-        path: path.resolve(__dirname, "output"),
+        path: path.resolve(__dirname, "html"),
         filename: "bundle.js"
     },
     module: {
@@ -25,12 +25,12 @@ const config = {
         }
     },
     plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: "./html/**/*",
-                to: "./"
-            }
-        ])
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: "./html/**/*",
+        //         to: "./"
+        //     }
+        // ])
     ]
 }
 module.exports = config;
