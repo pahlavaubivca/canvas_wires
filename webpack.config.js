@@ -1,10 +1,14 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const gc = process.env.gconstr == 1;
+const entry = gc ? "./graphic_constructor/main.ts" : "./index.ts";
+const output = gc ? "graphic_constructor" : "html";
+console.log(gc);
 const config = {
-    entry: "./index.ts",
+    entry: entry,
     devtool: "source-map",
     output: {
-        path: path.resolve(__dirname, "output"),
+        path: path.resolve(__dirname, output),
         filename: "bundle.js"
     },
     module: {
@@ -25,12 +29,12 @@ const config = {
         }
     },
     plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: "./html/**/*",
-                to: "./"
-            }
-        ])
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: "./html/**/*",
+        //         to: "./"
+        //     }
+        // ])
     ]
 }
 module.exports = config;

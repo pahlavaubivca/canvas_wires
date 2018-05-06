@@ -1,6 +1,7 @@
-import {IWires, IBeam, IColor} from "../index";
+import {IWires, IBeam, IColor} from "../utils/interfaces";
 import {getAmount, getWidth, parseColor, random} from "./helper";
-import {getBaseLines} from "./basewires";
+import {getBaseLines} from "./wire/basewires";
+
 export interface IPoints {
     points: { x: number, y: number }[]
     width: number;
@@ -17,7 +18,8 @@ export class Painter {
         this.arrPoints = points;
         this.ctx = ctx;
     }
-    public baseWiresInit(b:IWires){
+
+    public baseWiresInit(b: IWires) {
         this.lines = getBaseLines(b, this.arrPoints);
         this.drawLines();
     }

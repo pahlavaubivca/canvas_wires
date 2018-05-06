@@ -1,46 +1,14 @@
 import {Canvas} from "./lib/canvas";
-import {Painter} from "./lib/painter";
+import {Point} from "./lib/point";
+import {ICoordinate, IParams, IWires} from "./utils/interfaces";
+import {WireTreeBuilder} from "./lib/wire/wires_builder";
 
-interface IParams {
-    width: number;
-    height: number;
-    wires?: IWires;
-    beam?: IBeam;
-}
-
-
-export interface IColor {
-    red: number[] | number;
-    green: number[] | number;
-    blue: number[] | number;
-    opacity: number[] | number;
-}
-
-export interface IWires {
-    color: IColor[] | string[];
-    count: number[] | number;
-    width: number[] | number;
-    distanceRange:{
-        x: number[],
-        y: number[]
-    }
-}
-
-export interface IBeam {
-    color: IColor[];
-    count: number[];
-    speed: number[];
-    length: number[];
-    direction: number;
-}
 
 export class Wires {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
-    private coordinate: { x: number, y: number }[];
-    private wires: IWires;
-    private beam: IBeam;
-    private painter: Painter;
+    public canvas: HTMLCanvasElement;
+    public ctx: CanvasRenderingContext2D;
+    public point: Point;
+    public wiresParams: IWires;
 
     constructor(params: IParams) {
         const _canvas = new Canvas(params.width, params.height);
@@ -48,29 +16,23 @@ export class Wires {
         this.ctx = _canvas.getContext();
     }
 
-    public setCoordinate(coordinate: { x: number, y: number }[]) {
-        this.coordinate = coordinate;
-        this.painter = new Painter(coordinate, this.ctx);
+    public setCoordinate(coordinate: ICoordinate): Wires {
+        this.point = new Point(coordinate[0], null);
+        return this;
     }
 
-    public setWires(wiresParams: IWires) {
-        this.wires = wiresParams;
+    public setWiresParams(wiresParams: IWires): Wires {
+        this.wiresParams = wiresParams;
+        return this;
     }
 
-    public setBeam(beamParams: IBeam) {
-        this.beam = beamParams;
-    }
-
-    public appendTo(container: HTMLElement) {
+    public appendTo(container: HTMLElement): Wires {
         container.appendChild(this.canvas);
-    }
-
-    public getCanvas(): HTMLCanvasElement {
-        return this.canvas;
+        return this;
     }
 
     public run() {
-        this.painter.baseWiresInit(this.wires);
+        const wiresBuilder = new WireTreeBuilder(this.point, this.wiresParams, this.ctx);
     }
 }
 

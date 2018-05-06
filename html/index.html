@@ -21,36 +21,170 @@
     }
 </style>
 <div id="container"></div>
-<script type="text/javascript" src="../bundle.js"></script>
+<script type="text/javascript" src="./bundle.js"></script>
 <script>
-    var wires = new Wires({
-        width: window.innerWidth,//width canvas
-        height: window.innerHeight,//height canvas
-    });
-    wires.setWires({
-        color: [{
-            red: 30,
-            green: 30,
-            blue: 30,
-            opacity: 0.7
-        }],
-        count: 8, //amount wires lines
-        distanceRange: {
-            x: [5, 10],
-            y: [2, 3]
-        },
-        width: [1, 2], // range width lines
-    });
-    wires.setCoordinate([
-        {x: 50, y: 790},
-        {x: 400, y: 650},
-        {x: 250, y: 550},
-        {x: 350, y: 430},
-        {x: 300, y: 280},
-        {x: 650, y: 50},
-    ]);
-    wires.appendTo(container);
-    wires.run()
+    // var wires = new Wires({
+    //     width: window.innerWidth,//width canvas
+    //     height: window.innerHeight,//height canvas
+    // });
+    // wires.setWiresParams({
+    //     color: [{
+    //         red: 30,
+    //         green: 30,
+    //         blue: 30,
+    //         opacity: 0.7
+    //     }],
+    //     amount: 8, //amount wires lines
+    //     distanceRange: {
+    //         x: [5, 10],
+    //         y: [0, 0]
+    //     },
+    //     width: [1, 2], // range width lines
+    // });
+    // wires.setCoordinate([
+    //     {x: 50, y: 790},
+    //     {x: 400, y: 650},
+    //     {x: 250, y: 550},
+    //     {x: 350, y: 430},
+    //     {x: 300, y: 280},
+    //     {x: 650, y: 50},
+    // ]);
+    // wires.appendTo(container);
+    // wires.run();
+
+
+    const pointObj = [{
+        x: 50,
+        y: 50,
+        childs: [{
+            x: 100,
+            y: 50,
+            childs: [{
+                x: 100,
+                y: 100,
+                childs: [{
+                    x: 150,
+                    y: 100,
+                    childs: [{
+                        x: 200,
+                        y: 100,
+                        childs: [{
+                            x: 250,
+                            y: 100,
+                            childs: [{
+                                x: 250,
+                                y: 150,
+                                childs: [{
+                                    x: 250,
+                                    y: 200,
+                                    childs: [{
+                                        x: 300,
+                                        y: 200,
+                                        childs: [{
+                                            x: 350,
+                                            y: 150,
+                                            childs: [{
+                                                x: 350,
+                                                y: 100,
+                                                childs: [{
+                                                    x: 400,
+                                                    y: 100
+                                                }]
+                                            }]
+                                        }, {
+                                            x: 300,
+                                            y: 150,
+                                            childs: [{
+                                                x: 300,
+                                                y: 100,
+                                                childs: [{
+                                                    x: 300,
+                                                    y: 50
+                                                }]
+                                            }]
+                                        }]
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                x: 150,
+                y: 50,
+                childs: [{
+                    x: 150,
+                    y: 100,
+                    childs: [{
+                        x: 150,
+                        y: 150,
+                        childs: [{
+                            x: 200,
+                            y: 150,
+                            childs: [{
+                                x: 200,
+                                y: 200,
+                                childs: [{
+                                    x: 150,
+                                    y: 200
+                                }]
+                            }]
+                        }, {
+                            x: 150,
+                            y: 200,
+                            childs: [{
+                                x: 150,
+                                y: 250,
+                                childs: [{
+                                    x: 200,
+                                    y: 250,
+                                    childs: [{
+                                        x: 250,
+                                        y: 250,
+                                        childs: [{
+                                            x: 300,
+                                            y: 200,
+                                            childs: [{
+                                                x: 350,
+                                                y: 200
+                                            }]
+                                        }]
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }]
+                }]
+            }]
+        }]
+    }];
+    const wire = new Wires({
+        width: window.innerWidth,
+        height: window.innerHeight
+    })
+        .appendTo(container)
+        .setCoordinate(pointObj)
+        .setWiresParams({
+            color: [{
+                red: 230,
+                green: 30,
+                blue: 30,
+                opacity: 0.4
+            },{
+                red: 0,
+                green: 30,
+                blue: 30,
+                opacity: 0.4
+            }],
+            amount: 5, //amount wires lines
+            distanceRange: {
+                x: [8, 10],
+                y: [2, 4]
+            },
+            splitBy:0,
+            width: [1, 2], // range width lines
+        })
+        .run();
 </script>
 </body>
 </html>

@@ -1,23 +1,26 @@
-import {distBetweenPoints, getAmount, getWidth, parseColor, random} from "./helper";
-import {IWires} from "../index";
-import {IPoints} from "./painter";
+import {distBetweenPoints, getAmount, getWidth, parseColor, random} from "../helper";
+import {IWires} from "../../utils/interfaces";
+import {IPoints} from "../painter";
 
 let _buffPoint;
 let minDist;
 
+/**
+ * function
+ * @param {IWires} b - options
+ * @param {Array<{x:number,y:number}>} - initial point setted by user
+ **/
 export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPoints[] => {
     const lines = [];
-    const _amount = getAmount(b);
+    const _amount = getAmount(b.amount);
     const minDX = b.distanceRange.x[0];
     const maxDX = b.distanceRange.x[1];
     const minDY = b.distanceRange.y[0];
     const maxDY = b.distanceRange.y[1];
     minDist = minDX < minDY ? minDY : minDX;
-
-
     lines.push({
         points: points,
-        width: getWidth(b),
+        width: getWidth(b.width),
         color: parseColor(b.color)
     });
     _buffPoint = [{x: 0, y: 0}];
@@ -40,7 +43,7 @@ export const getBaseLines = (b: IWires, points: { x: number, y: number }[]): IPo
         const color = parseColor(b.color);
         lines.push({
             points: _points,
-            width: getWidth(b),
+            width: getWidth(b.width),
             color: color
         })
     }

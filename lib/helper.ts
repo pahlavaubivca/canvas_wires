@@ -1,4 +1,4 @@
-import {IColor, IWires} from "../index";
+import {IColor, IWires} from "../utils/interfaces";
 
 export const degToRad = (deg) => {
     return (Math.PI / 180) * deg;
@@ -15,25 +15,33 @@ export const random = (min, max) => {
     return Math.random() * (max - min) + min;
 };
 
-export const parseColor = (colors: Array<IColor | string>): string => {
+export const parseColor = (colors: Array<IColor | string> | string): string => {
     let color;
-    let cColor = colors[Math.floor(random(0, colors.length - 0.1))];
     if (typeof colors === "string") {
-        color = cColor
+        color = colors
     } else {
+        let cColor = colors[Math.floor(random(0, colors.length - 0.1))];
         cColor = cColor as IColor;
-        const red = typeof cColor.red === "number" ? cColor.red : Math.floor(random(cColor.red[0], cColor.red[1]));
-        const green = typeof cColor.green === "number" ? cColor.green : Math.floor(random(cColor.green[0], cColor.green[1]));
-        const blue = typeof cColor.blue === "number" ? cColor.blue : Math.floor(random(cColor.blue[0], cColor.blue[1]));
-        const opacity = typeof cColor.opacity === "number" ? cColor.opacity : random(cColor.opacity[0], cColor.opacity[1]);
+        const red = typeof cColor.red === "number" ?
+            cColor.red :
+            Math.floor(random(cColor.red[0], cColor.red[1]));
+        const green = typeof cColor.green === "number" ?
+            cColor.green :
+            Math.floor(random(cColor.green[0], cColor.green[1]));
+        const blue = typeof cColor.blue === "number" ?
+            cColor.blue :
+            Math.floor(random(cColor.blue[0], cColor.blue[1]));
+        const opacity = typeof cColor.opacity === "number" ?
+            cColor.opacity :
+            random(cColor.opacity[0], cColor.opacity[1]);
         color = `rgba(${red},${green},${blue},${opacity})`;
     }
     return color;
 };
-export const getWidth = (b: IWires): number => {
-    return typeof b.width === "number" ? b.width : random(b.width[0], b.width[1]);
+export const getWidth = (width: number[] | number): number => {
+    return typeof width === "number" ? width : random(width[0], width[1]);
 };
 
-export const getAmount = (b: IWires): number => {
-    return typeof b.count === "number" ? b.count : random(b.count[0], b.count[1]);
+export const getAmount = (amount: number[] | number): number => {
+    return typeof amount === "number" ? amount : random(amount[0], amount[1]);
 };
