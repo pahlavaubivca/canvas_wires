@@ -21,7 +21,7 @@ export class Painter {
         this.lines = getBaseLines(b, this.arrPoints);
         this.drawLines();
     }
-
+//asdfasd
     private drawLines() {
         this.lines.forEach((value) => {
             this.ctx.beginPath();
