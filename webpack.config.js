@@ -1,8 +1,8 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const gc = process.env.gconstr == 1;
-const entry = gc ? "./graphic_constructor/main.ts" : "./index.ts";
-const output = gc ? "graphic_constructor" : "html";
+const entry = gc ? "./gconstructor/main.ts" : "./index.ts";
+const output = gc ? "gconstructor" : "html";
 console.log(gc);
 const config = {
     entry: entry,

@@ -16,6 +16,11 @@ export class Wires {
         this.ctx = _canvas.getContext();
     }
 
+    public setPoint(point: Point): Wires {
+        this.point = point;
+        return this;
+    }
+
     public setCoordinate(coordinate: ICoordinate): Wires {
         this.point = new Point(coordinate[0], null);
         return this;

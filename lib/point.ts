@@ -29,4 +29,8 @@ export class Point {
             });
         }
     }
+
+    public setAncesor(ancesor: Point) {
+        this.parent = ancesor;
+    }
 }
