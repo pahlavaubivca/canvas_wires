@@ -10,10 +10,10 @@ export class Wires {
     public point: Point;
     public wiresParams: IWires;
 
-    constructor(params: IParams) {
-        const _canvas = new Canvas(params.width, params.height);
-        this.canvas = _canvas.getElement();
-        this.ctx = _canvas.getContext();
+    constructor(canvas: HTMLCanvasElement) {
+        // const _canvas = new Canvas(params.width, params.height);
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d");
     }
 
     public setPoint(point: Point): Wires {
@@ -31,10 +31,10 @@ export class Wires {
         return this;
     }
 
-    public appendTo(container: HTMLElement): Wires {
-        container.appendChild(this.canvas);
-        return this;
-    }
+    // public appendTo(container: HTMLElement): Wires {
+    //     container.appendChild(this.canvas);
+    //     return this;
+    // }
 
     public run() {
         const wiresBuilder = new WireTreeBuilder(this.point, this.wiresParams, this.ctx);

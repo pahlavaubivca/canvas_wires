@@ -1,4 +1,4 @@
-import {Point} from "../lib/point";
+import {Point} from "../../lib/point";
 
 export class PointBuilder {
     public point: Point;
@@ -11,6 +11,7 @@ export class PointBuilder {
     public newPoint(x: number, y: number) {
         const p = new Point({x: x, y: y}, null);
         if (!this.previous) {
+
             // this.previous = p;
             this.point = p;
         } else {

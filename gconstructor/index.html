@@ -2,15 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Constructor</title>
+    <style>
+        .container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+        }
+
+        .title-panel {
+            position: relative;
+            width: 100%;
+            height: auto;
+            top: 0px;
+            background: rgba(0, 50, 150, 0.6);
+            padding: 5px;
+        }
+
+        .title-panel span {
+            color: white;
+            font-family: Consolas, SansSerif;
+            font-size: 15px;
+            padding: 3px;
+            margin: 1px;
+            background: rgba(0, 50, 150, 0.8);
+            cursor: pointer;
+        }
+
+        .canvas-panel {
+            background: rgba(150, 0, 0, 0.3);
+            position: relative;
+            width: 100%;
+        }
+
+        .result {
+            display: none;
+        }
+
+        canvas {
+            position: relative;
+            width: 640px;
+            height: 640px;
+            border: 1px solid;
+        }
+    </style>
 </head>
 <body>
-<div id="constructor"></div>
-<div id="wire"></div>
+<div class="container">
+    <div class="title-panel">
+        <span id="constructor">CONSTRUCTOR</span>
+        <span id="result">RESULT</span>
+    </div>
+    <div class="canvas-panel">
+        <div id="block-constructor" class="constructor">
+            <canvas width="640" height="640" id="canvas-constructor"></canvas>
+        </div>
+        <div id="block-result" class="result">
+            <canvas width="640" height="640" id="canvas-result"></canvas>
+        </div>
+    </div>
+</div>
+
 <script type="application/javascript" src="./bundle.js"></script>
 <script>
-    // console.log("run")
-    const gc = new GConstructor(document.getElementById("constructor"));
+    const gc = new GConstructor(document.getElementById("canvas-constructor"))
+        .setWiresCanvas(document.getElementById("canvas-result"))
+        .setWiresParams({
+            color: [{
+                red: 230,
+                green: 30,
+                blue: 30,
+                opacity: 0.4
+            }, {
+                red: 0,
+                green: 30,
+                blue: 30,
+                opacity: 0.4
+            }],
+            amount: 5, //amount wires lines
+            distanceRange: {
+                x: [4, 5],
+                y: [0, 0]
+            },
+            splitBy: 0,
+            width: [1, 2], // range width lines
+        });
+    const constructorSpan = document.getElementById("constructor");
+    const resultSpan = document.getElementById("result");
+    const constructorBlock = document.getElementById("block-constructor");
+    const resultBlock = document.getElementById("block-result");
+    constructorSpan.addEventListener("click", () => {
+        constructorBlock.style.display = "block";
+        resultBlock.style.display = "none";
+
+    });
+    resultSpan.addEventListener("click", () => {
+        constructorBlock.style.display = "none";
+        resultBlock.style.display = "block";
+        gc.run();
+    })
+
+
 </script>
 </body>
 </html>
