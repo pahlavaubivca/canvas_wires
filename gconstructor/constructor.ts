@@ -12,6 +12,8 @@ export class GraphicConstructor extends CanvasDrawer {
     private wires: Array<Wires> = [];
     private break: boolean = true;
     private pointBuilder: PointBuilder;
+    private lastX: number;
+    private lastY: number;
 
     constructor(canvas: HTMLCanvasElement) {
         super({
@@ -55,9 +57,10 @@ export class GraphicConstructor extends CanvasDrawer {
     }
 
     private pointHandler(e: MouseEvent) {
-
         const x = e.offsetX;
         const y = e.offsetY;
+        this.lastX = x;
+        this.lastY = y;
         this.pointBuilder.newPoint(x, y);
         if (this.break) {
             this.moveTo(x, y);
@@ -77,8 +80,10 @@ export class GraphicConstructor extends CanvasDrawer {
 
     private moveHandler(e: MouseEvent) {
         if (!this.break) {
-
-
+            // const x = e.offsetX;
+            // const y = e.offsetY;
+            // this.pointBuilder.newPoint(x, y);
+            // this.lineTo(x, y);
         }
     }
 }
