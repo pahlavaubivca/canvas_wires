@@ -42,18 +42,13 @@ resultSpan.addEventListener("click", () => {
 configPanel.addEventListener("click", () => {
     if (!configExpanded) {
         removeClass(configPanel, "min");
-        configExpandTag.style.display = "block";
-        configCollapseTag.style.display = "none";
         configExpanded = true;
     }
 });
 closeTag.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("close click");
     addClass(configPanel, "min");
-    configExpandTag.style.display = "none";
-    configCollapseTag.style.display = "block";
     configExpanded = false;
 });
 
